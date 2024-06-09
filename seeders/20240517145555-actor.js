@@ -5,19 +5,19 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.bulkInsert('actor', [
       {
-        "first_name": "Budiono",
+        "first_name": "Anto",
         "last_name": "Siregar",
       }, {
-        "first_name": "Bebek",
+        "first_name": "Messi",
         "last_name": "Betutu",
       }, {
-        "first_name": "Adolf",
+        "first_name": "Ronaldo",
         "last_name": "Hitler",
       }, {
-        "first_name": "Jason",
+        "first_name": "Helner",
         "last_name": "Daweenie",
       }, {
-        "first_name": "Mahen",
+        "first_name": "Andi",
         "last_name": "Ganteng",
       },
     ])

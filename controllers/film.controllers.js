@@ -5,10 +5,10 @@ class Film {
     static async getAllFilms(req, res) {
         try {
             const data = await model.film.findAll();
-            res.status(200).json(data)
+            res.status(200).json({status: "success", data: data})
         } catch (error) {
             console.log(error);
-            res.json({ message: 'Tidack bisa menampilkan data semua film, coba cek console errornya!' });
+            res.status(500).json({ status: "500", message: 'Internal server error!' });
         }
     }
 
@@ -19,14 +19,15 @@ class Film {
 
             if (!data) {
                 res.status(404).json({
-                    message: 'id-nya antara kurang atau kebanyakan, coba yang bener'
+                    status: "404",
+                    message: 'Film not found'
                 })
             } else {
-                res.status(200).json(data)
+                res.status(200).json({status: "success",data: data})
             }
         } catch (error) {
             console.log(error);
-            res.json({ message: 'intinya sih ini pesan error bwang' });
+            res.status(500).json({ status: "500",message: 'Internal server error!' });
         }
     }
 
@@ -34,7 +35,7 @@ class Film {
         const categoryName = req.query.search ? req.query.search.toLowerCase() : null;
 
         if (!categoryName) {
-            return res.status(400).json({ message: "masukin categorynya kayak gini: /films/category?search=(nama category film)" });
+            return res.status(400).json({ status: "404", message: "masukin categorynya kayak gini: /films/category?search=(nama category film)" });
         }
 
         try {
@@ -51,14 +52,15 @@ class Film {
 
             if (data.length === 0) {
                 res.json({
-                    message: "Ga ada film aneh-aneh disini bambank!"
+                    status: "200",
+                    message: "Film not found"
                 });
             } else {
                 res.status(200).json(data)
             }
         } catch (error) {
             console.log(error);
-            res.json({ message: 'anjay error' });
+            res.status(500).json({status: "500", message: "Internal server error!"})
         }
     }
 }

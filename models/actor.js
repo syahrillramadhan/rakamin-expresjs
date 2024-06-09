@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
 
     }
   }
+  
   actor.init({
     first_name: {
       type: DataTypes.STRING,
